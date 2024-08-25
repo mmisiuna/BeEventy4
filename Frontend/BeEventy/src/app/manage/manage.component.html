@@ -1,0 +1,31 @@
+<table>
+    <tr>
+      <th>Obrazek profilowy</th>
+      <th>Email</th>
+      <th>Aktywność</th>
+      <th>Uprawnienia</th>
+    </tr>
+    <tr *ngFor="let user of users">
+      <td>
+        <img [src]="'assets/users/' + user.profileImage" alt="Profile Image" style="width: 50px; height: 50px; border-radius: 50%;" />
+      <td>{{ user.email }}</td>
+      <td>
+        <input type="checkbox" [checked]="user.activeAccount" (change)="toggleActive(user)" />
+      </td>
+      <td>
+        <label>
+          <input type="radio" name="role-{{user.id}}" [value]="0" [checked]="user.accountType === 0" (change)="changePermission(user, 0)" />
+          Użytkownik
+        </label>
+        <label>
+          <input type="radio" name="role-{{user.id}}" [value]="1" [checked]="user.accountType === 1" (change)="changePermission(user, 1)" />
+          Moderator
+        </label>
+        <label>
+          <input type="radio" name="role-{{user.id}}" [value]="2" [checked]="user.accountType === 2" (change)="changePermission(user, 2)" />
+          Administrator
+        </label>
+      </td>
+    </tr>
+  </table>
+  
